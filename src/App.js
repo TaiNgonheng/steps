@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const messages = [
+const messagess = [
   "Learn React ⚛️",
   "Apply for jobs 💼",
   "Invest your new income 🤑",
@@ -9,8 +9,7 @@ const messages = [
 
 export default function App(){
    const [step, setStep]= useState(1);
-   const [test, setTest] = useState({name:""})
-   const [isOpen, setIsOpen] = useState(0)
+   const [isOpen, setIsOpen] = useState(true)
 
   function handlePrevious(){
     if(step>1) setStep(step -1)
@@ -18,21 +17,20 @@ export default function App(){
 
   function handleNext(){ 
     if (step<3)setStep(step +1);
-    setTest({ name:"heng"})
   }
 
   return(
     <div>
-      <button className="close" onClick={()=>setIsOpen(!isOpen)}>&times</button>
-      {isOpen &&
+      <button className="close" onClick={()=>setIsOpen(!isOpen)}>&times;</button>
+   {isOpen && (
     <div className="steps">
       <div className="numbers">
           <div className={step>=1 ? 'active':''}>1</div>
           <div className={step>=2 ? 'active':''}>2</div>
           <div className={step>=3 ? 'active':''}>3</div>
       </div>
-      <p className="message">step {step}: {messages[step-1]}
-        {test.name}
+      <p className="message">step {step}: {messagess[step-1]}
+        {/*test.name*/}
       </p>
 
       <div className="buttons">
@@ -46,7 +44,7 @@ export default function App(){
         onClick={()=>handleNext()}
         >Next</button>
       </div>
+    </div>)}
     </div>
-     }</div>
   );
 }
